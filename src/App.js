@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom'
 
 //Components imports
 import HomePage from './components/homepage/HomePage'
-
+import Search from './components/search/Search'
 class App extends Component {
 
   //constructor to declare our state to handle data
@@ -34,8 +34,8 @@ class App extends Component {
               />
             }
             />
-          {/*<Route path="/search/:city" component={Search} />
-          <Route path="/:city/:lat/:long" component={CityDetail} />*/}
+          <Route exact path="/search/:city" component={Search} />
+          {/*<Route path="/:city/:lat/:long" component={CityDetail} />*/}
         </Switch>
       </div>
     );
