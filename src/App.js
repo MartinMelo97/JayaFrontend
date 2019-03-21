@@ -15,7 +15,9 @@ const styles = theme => ({
     root: {
       flexGrow: 1,
       width: "100vw",
-      margin: 0
+      margin: 0,
+      backgroundColor: "#F7F7F7",
+      minHeight:"100vh"
     },
     container: {
       padding: "0 !important",

@@ -1,10 +1,26 @@
 import React, { Component } from 'react'
 import { API_URL } from '../../consts'
 import axios from 'axios'
-
 import CurrentInfo from './CurrentInfo'
-import { Hourly } from './Hourly'
-import { Daily } from './Daily'
+import Hourly from './Hourly'
+import Daily from './Daily'
+import { withStyles } from '@material-ui/core/styles'
+import { Grid, Card, CardContent, Switch, FormControlLabel } from '@material-ui/core'
+
+const styles = theme => ({
+    container: {
+        flexGrow: 1,
+        width: "80%",
+        minHeight:"80vh",
+        borderRadius: "10px",
+        backgroundColor:"#fff",    
+        boxShadow: "4px 4px 4px rgba(0,0,0,0.3)",
+        margin: "5% 0 5% 10%"
+    },
+    itemsFirst:{
+        textAlign:"center"
+    }
+})
 
 class Detail extends Component {
 
@@ -68,10 +84,14 @@ class Detail extends Component {
 
 
     returnTime = (time) => {
-        const timeHours = new Date(time * 1000).getHours()
+        let timeHours = new Date(time * 1000).getHours()
         let timeMinutes = new Date(time * 1000).getMinutes()
-        if(timeMinutes === 0) {
-            timeMinutes = '00'
+        if(timeMinutes.toString().length === 1) {
+            timeMinutes = '0' + timeMinutes.toString()
+        }
+
+        if(timeHours.toString().length === 1) {
+            timeHours = '0' + timeHours.toString()
         }
         const timeFormatted = `${timeHours}:${timeMinutes}`
         return timeFormatted
@@ -95,14 +115,26 @@ class Detail extends Component {
 
     render(){
         let { name } = this.props.location.state
+        const { classes } = this.props
         return(
-            <div>
-                {this.state.scale === "F" ?
-                <button onClick={this.changeScale}>Cambiar a Celsius</button>
-                :
-                <button onClick={this.changeScale}>Canbiar a Fahrenheit</button>
-                }
-                <h2>Ciudad: {name}</h2>
+            <div className={classes.container}>
+                <Grid container spacing={16}>
+                    <Grid item xs={6} className={classes.itemsFirst}>
+                        <FormControlLabel 
+                            control = {
+                                <Switch
+                                    checked={this.state.scale === "F" ? false : true}
+                                    onChange={this.changeScale}
+                                    value=""
+                                />
+                            }
+                            label="Temperatura en Celsius"
+                        />
+                    </Grid>
+                    <Grid item xs={6} className={classes.itemsFirst}>
+                    <h2>Ciudad: {name}</h2>
+                    </Grid>
+                    <Grid item xs={12}></Grid>
                 { this.state.isReady ?
                     <div>
                     <CurrentInfo 
@@ -111,12 +143,14 @@ class Detail extends Component {
                         scale={this.state.scale}
                         toCelsius={this.toCelsius}
                         />
+                    
                     <Hourly 
                         hours={this.state.info.hourly} 
                         returnTime={this.returnTime}
                         scale={this.state.scale}
                         toCelsius={this.toCelsius}
                         />
+                
                     <Daily 
                         days={this.state.info.daily} 
                         returnDay={this.returnDay}
@@ -125,6 +159,7 @@ class Detail extends Component {
                     />
                     </div>
                 : <p>Trayendo datos</p>}
+                </Grid>
 
             </div>
 
@@ -132,4 +167,4 @@ class Detail extends Component {
     }
 }
 
-export default Detail
+export default withStyles(styles)(Detail)
