@@ -1,18 +1,52 @@
 import React from 'react'
+import './homepage.scss'
 import { NavLink } from 'react-router-dom'
-const HomePage = (props) => (
+import { withStyles } from '@material-ui/core/styles'
+import {Button, Input} from '@material-ui/core'
+
+const styles = theme => ({
+    input: {
+        height: "5vh !important",
+        marginLeft: theme.spacing.unit,
+        textAlign:"center !imporrtant"
+    },
+    button: {
+        color: "#fff",
+        width: "25vw",
+        fontSize: "1.5em",
+        borderColor: "#fff"
+    },
+    navlink: {
+        textDecoration: "none"
+    }
+})
+
+const HomePage = (props) => {
+    const { classes } = props
+    return(
+    <div className="homepage-container">
     <div>
-    <h2>HomePage</h2>
-    <input 
-        type="text"
+    <img src="https://www.jayacompany.com/wp-content/uploads/2019/03/jayacompany.png" alt="jaya"/>
+    <Input
         value={props.inputCity}
         onChange={(e)=>props.updateCity(e)}
-        placeholder="Ciudad"
+        variant="outlined"
+        label="¿De qué ciudad deseas conocer su clima?"
+        placeholder="¿De qué ciudad deseas conocer su clima?"
+        className={classes.input+" input"}
+        inputProps={{
+            'aria-label': 'Description',
+        }}
     />
-    <NavLink to={`/search/${props.inputCity}`}>
-        <button>Search</button>
+    <NavLink to={`/search/${props.inputCity}`} className={classes.navlink}>
+        <Button
+            variant="outlined"
+            className={classes.button+ " button"}
+        >Search</Button>
     </NavLink>
     </div>
-)
+    </div>
+    )
+}
 
-export default HomePage
+export default withStyles(styles)(HomePage)
