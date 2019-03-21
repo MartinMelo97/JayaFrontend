@@ -5,7 +5,7 @@ import CurrentInfo from './CurrentInfo'
 import Hourly from './Hourly'
 import Daily from './Daily'
 import { withStyles } from '@material-ui/core/styles'
-import { Grid, Card, CardContent, Switch, FormControlLabel } from '@material-ui/core'
+import { Grid, Switch, FormControlLabel } from '@material-ui/core'
 
 const styles = theme => ({
     container: {
@@ -119,7 +119,7 @@ class Detail extends Component {
         return(
             <div className={classes.container}>
                 <Grid container spacing={16}>
-                    <Grid item xs={6} className={classes.itemsFirst}>
+                    <Grid item xs={12} md={6} className={classes.itemsFirst}>
                         <FormControlLabel 
                             control = {
                                 <Switch
@@ -131,7 +131,7 @@ class Detail extends Component {
                             label="Temperatura en Celsius"
                         />
                     </Grid>
-                    <Grid item xs={6} className={classes.itemsFirst}>
+                    <Grid item xs={12} md={6} className={classes.itemsFirst}>
                     <h2>Ciudad: {name}</h2>
                     </Grid>
                     <Grid item xs={12}></Grid>

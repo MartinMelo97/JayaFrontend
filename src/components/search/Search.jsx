@@ -8,7 +8,6 @@ import map from '../../static/img/map.jpg'
 
 const styles = theme =>({
     card: {
-        minWidth: 275,
         minHeight: "30vh !important",
         display:"flex",
         flexDirection: "column",
@@ -26,7 +25,8 @@ const styles = theme =>({
     root: {
         flexGrow: 1,
         width: "80%",
-        marginLeft: "10%",
+        marginLeft: "5%",
+        marginRight: "10%",
         padding: "2%",
         boxShadow: "2px 2px 4px rgba(0,0,0,0.3)",
         marginBottom: "5%",
@@ -93,8 +93,8 @@ class Search extends Component {
         const cityProps = this.props.match.params.city
         const { classes } = this.props
         return(
-            <div className={classes.controot}>
             <Grid container className={classes.root} spacing={32}>
+            <Grid item xs={12}>
             <Typography variant="h4" className={classes.text}>
                 Resultados de la búsqueda: {cityProps}
             </Typography>
@@ -104,7 +104,7 @@ class Search extends Component {
                     const longitude = city.geometry.coordinates[0]
                     const latitude = city.geometry.coordinates[1]
                     return(
-                        <Grid item xs={4} key={id}>
+                        <Grid item xs={12} md={4} key={id}>
                             <NavLink
                                     to={{
                                         pathname: `/${cityProps}/${latitude}/${longitude}`,
@@ -132,8 +132,8 @@ class Search extends Component {
                     )
                 }   
             ): <h2>Cargando...</h2>}
+            </Grid>
             </Grid> 
-            </div>
         )
     }
 

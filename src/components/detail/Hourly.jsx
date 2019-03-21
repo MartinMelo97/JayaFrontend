@@ -46,7 +46,7 @@ const Hourly = ({hours, returnTime, scale, toCelsius, classes}) => {
             </Typography>
         </Grid>
             {hours.data.map(hour=>(
-                <Grid item xs={2} >
+                <Grid item xs={6} md={2} >
                 <HourlyCard 
                     data={hour} 
                     returnTime={returnTime}

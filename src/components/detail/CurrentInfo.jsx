@@ -26,7 +26,7 @@ const CurrentInfo = ({data, returnTime, scale, toCelsius, classes}) => {
     return(
             <Grid container spacing={16} className={classes.container}>
                 
-                <Grid item xs={6} className={classes.childContainer}>
+                <Grid item xs={12} md={6} className={classes.childContainer}>
                     <img src={`https://darksky.net/images/weather-icons/${data.icon}.png`} alt={data.icon} className={classes.icon}/>
                     <p>{data.summary}</p>
                     {scale === "F" ?
@@ -41,7 +41,7 @@ const CurrentInfo = ({data, returnTime, scale, toCelsius, classes}) => {
                     </div>
                     }
                 </Grid>
-                <Grid item xs={6} className={classes.childContainer}>
+                <Grid item xs={12} md={6} className={classes.childContainer}>
                     <Chip className={classes.chips} label={`Probabilidad de lluvia: ${data.precipProbability * 100}%`} />
                     <Chip className={classes.chips} label={`Humedad: ${data.humidity * 100}%`} />
                     <Chip className={classes.chips} label={`Velocidad del viento: ${data.windSpeed} mph`} />

@@ -41,7 +41,7 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      inputCity: null //atribute of a state's object
+      inputCity: "" //atribute of a state's object
     }
   }
 

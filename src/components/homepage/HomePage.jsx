@@ -18,6 +18,9 @@ const styles = theme => ({
     },
     navlink: {
         textDecoration: "none"
+    },
+    logo: {
+        maxWidth: "100vw"
     }
 })
 
@@ -26,7 +29,7 @@ const HomePage = (props) => {
     return(
     <div className="homepage-container">
     <div>
-    <img src="https://www.jayacompany.com/wp-content/uploads/2019/03/jayacompany.png" alt="jaya"/>
+    <img src="https://www.jayacompany.com/wp-content/uploads/2019/03/jayacompany.png" alt="jaya" className={classes.logo}/>
     <Input
         value={props.inputCity}
         onChange={(e)=>props.updateCity(e)}
@@ -38,7 +41,7 @@ const HomePage = (props) => {
             'aria-label': 'Description',
         }}
     />
-    <NavLink to={`/search/${props.inputCity}`} className={classes.navlink}>
+    <NavLink to={`/search/${props.inputCity}`} className={classes.navlink+ " link"}>
         <Button
             variant="outlined"
             className={classes.button+ " button"}

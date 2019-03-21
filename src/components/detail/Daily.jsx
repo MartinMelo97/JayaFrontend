@@ -51,7 +51,7 @@ const Daily = ({days, returnDay, scale, toCelsius, classes}) => (
             </Typography>
         </Grid>
             {days.data.map(day=>(
-                <Grid item xs={3} className={classes.dayCardContainer}>
+                <Grid item md={3} xs={6} className={classes.dayCardContainer}>
                 <DayCard 
                     data={day} 
                     returnDay={returnDay}
