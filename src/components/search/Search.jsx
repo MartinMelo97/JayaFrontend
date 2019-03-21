@@ -45,7 +45,12 @@ class Search extends Component {
                     return(
                         <div key={id}>
                             <NavLink
-                                to={`/${cityProps}/${latitude}/${longitude}`}
+                                to={{
+                                    pathname: `/${cityProps}/${latitude}/${longitude}`,
+                                    state: {
+                                        name: place_name
+                                    }
+                                }}
                             >
                                 <p>{place_name}</p>
                             </NavLink>
