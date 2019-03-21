@@ -13,6 +13,7 @@ const styles = theme =>({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
+        margin: "5vh 0"
     },
     title: {
         fontSize: "1.2em",
