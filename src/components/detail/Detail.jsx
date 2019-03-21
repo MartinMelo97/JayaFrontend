@@ -4,6 +4,8 @@ import axios from 'axios'
 
 import CurrentInfo from './CurrentInfo'
 import { Hourly } from './Hourly'
+import { Daily } from './Daily'
+
 class Detail extends Component {
 
     constructor(props){
@@ -29,6 +31,41 @@ class Detail extends Component {
             await alert(info.data)
         }
     }
+
+    returnDay = (time) => {
+        let date = new Date(time*1000)
+        let day_str = date.getDay()
+        let day = date.getDate()
+        switch(day_str)
+        {
+            case 0: 
+                day_str="Domingo" 
+                break
+            case 1: 
+                day_str="Lunes" 
+                break
+            case 2: 
+                day_str="Martes" 
+                break
+            case 3: 
+                day_str="Miércoles" 
+                break
+            case 4: 
+                day_str="Jueves" 
+                break
+            case 5: 
+                day_str="Viernes" 
+                break
+            case 6: 
+                day_str="Sábado" 
+                break
+            default:
+                day_str="WHAT"
+                break
+        }
+        return `${day_str} ${day}`
+    }
+
 
     returnTime = (time) => {
         const timeHours = new Date(time * 1000).getHours()
@@ -80,7 +117,12 @@ class Detail extends Component {
                         scale={this.state.scale}
                         toCelsius={this.toCelsius}
                         />
-                    {/*<Daily data={this.state.info.daily} />*/}
+                    <Daily 
+                        days={this.state.info.daily} 
+                        returnDay={this.returnDay}
+                        scale={this.state.scale}
+                        toCelsius={this.toCelsius}
+                    />
                     </div>
                 : <p>Trayendo datos</p>}
 
